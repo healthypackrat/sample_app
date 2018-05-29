@@ -67,3 +67,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 group :test do
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
 end
+
+gem 'faker', '~> 1.8', '>= 1.8.7'
+
+gem 'kaminari', '~> 1.1', '>= 1.1.1'
