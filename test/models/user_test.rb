@@ -2,7 +2,12 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   setup do
-    @user = User.new(name: 'Example User', email: 'user@example.com', password: 'foobar', password_confirmation: 'foobar')
+    @user = User.new(
+      name: 'Example User',
+      email: 'user@example.com',
+      password: 'foobar',
+      password_confirmation: 'foobar'
+    )
   end
 
   test "should be valid" do
@@ -89,5 +94,13 @@ class UserTest < ActiveSupport::TestCase
   test "authenticated? should return false for a user with nil digest" do
     not_used = ''
     assert_not @user.authenticated?(:remember, not_used)
+  end
+
+  test "associated microposts should be destroyed" do
+    @user.save
+    @user.microposts.create!(content: 'Lorem ipsum')
+    assert_difference 'Micropost.count', -1 do
+      @user.destroy
+    end
   end
 end
