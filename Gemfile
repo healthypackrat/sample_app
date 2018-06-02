@@ -71,3 +71,5 @@ end
 gem 'faker', '~> 1.8', '>= 1.8.7'
 
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
+
+gem 'mini_magick', '~> 4.8'
