@@ -15,6 +15,12 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
       post microposts_path, params: { micropost: { content: '' } }
     end
     assert_select '#error_explanation'
+    # Invalid picture
+    picture = fixture_file_upload('files/hello.txt', 'text/plain')
+    assert_no_difference 'Micropost.count' do
+      post microposts_path, params: { micropost: { content: 'ok', picture: picture } }
+    end
+    assert_select '#error_explanation'
     # Valid submission
     content = 'This micropost really ties the room together'
     picture = fixture_file_upload('files/rails.png', 'image/png')
